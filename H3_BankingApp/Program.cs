@@ -29,6 +29,21 @@ namespace H3_BankingApp
                 Console.WriteLine($"Transaction: {t.DateOfTrans.ToString("dd/MM/yyyy")} -- {t.Amount} -- {t.TransactionType}");
             }
 
+            Console.WriteLine("\n");
+
+            SavingsAccount saccount = new SavingsAccount("oiejoiw6564", 0.02M);
+
+            saccount.Deposit(300M);
+
+            saccount.AddInterest();
+
+            saccount.Withdraw(50M);
+
+            foreach (Transaction t in saccount.GetTransactions(null, null))
+            {
+                Console.WriteLine($"Transaction: {t.DateOfTrans.ToString("dd/MM/yyyy")} -- {t.Amount} -- {t.TransactionType}");
+            }
+
             Console.ReadKey();
         }
     }
