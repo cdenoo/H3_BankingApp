@@ -10,6 +10,16 @@ namespace H3_BankingApp
         {
             BankAccount account = new BankAccount("hhaoa121321");
             Console.WriteLine($"Account number: {account.AccountNumber}");
+
+            Console.WriteLine($"Account balance: {account.Balance}");
+
+            account.Deposit(200M);
+            Console.WriteLine($"Account balance after deposit: {account.Balance}");
+
+            account.Withdraw(100M);
+            Console.WriteLine($"Account balance after withdrawal: {account.Balance}");
+
+            Console.WriteLine($"Number of transactions: {account.NumberOfTransactions}");
         }
     }
 }

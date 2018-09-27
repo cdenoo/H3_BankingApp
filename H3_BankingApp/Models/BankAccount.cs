@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace H3_BankingApp.Models
 {
     public class BankAccount
     {
         #region Fields
-        private string _accountNumber; 
+        private string _accountNumber;
+        private IList<Transaction> _transactions;
         #endregion
 
         #region Properties
@@ -15,7 +17,12 @@ namespace H3_BankingApp.Models
             set { _accountNumber = value; }
         }
         public decimal Balance { get; private set; }
-        public int NumberOfTransactions { get; private set; }
+        public int NumberOfTransactions {
+            get
+            {
+                return _transactions.Count;
+            }
+        }
         #endregion
 
         #region Constructors
@@ -23,6 +30,7 @@ namespace H3_BankingApp.Models
         {
             AccountNumber = account;
             Balance = Decimal.Zero;
+            _transactions = new List<Transaction>();
         }
         #endregion
 
@@ -30,6 +38,7 @@ namespace H3_BankingApp.Models
         public void Deposit(decimal amount)
         {
             Balance += amount;
+            _transactions.Add(new Transaction(amount, TransactionType.Deposit));
         }
 
         public override bool Equals(Object obj)
@@ -42,10 +51,20 @@ namespace H3_BankingApp.Models
             throw new NotImplementedException();
         }
 
-        //public IEnumerable<Transaction> GetTransactions(DateTime from, DateTime until)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public IEnumerable<Transaction> GetTransactions(DateTime? from, DateTime? until)
+        {
+            if (from == null) from = DateTime.MinValue;
+            if (until == null) until = DateTime.MaxValue;
+            IList<Transaction> transList = new List<Transaction>();
+            foreach(Transaction t in _transactions)
+            {
+                if(t.DateOfTrans >= from && t.DateOfTrans <= until)
+                {
+                    transList.Add(t);
+                }
+            }
+            return transList;
+        }
 
         public override string ToString()
         {
@@ -55,7 +74,8 @@ namespace H3_BankingApp.Models
         public void Withdraw(decimal amount)
         {
             Balance -= amount;
-        } 
+            _transactions.Add(new Transaction(amount, TransactionType.Withdraw));
+        }
         #endregion
     }
 }
