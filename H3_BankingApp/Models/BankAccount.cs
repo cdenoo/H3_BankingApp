@@ -14,11 +14,8 @@ namespace H3_BankingApp.Models
             get { return _accountNumber; }
             set { _accountNumber = value; }
         }
-        public decimal Balance;
-        public int NumberOfTransactions
-        {
-            get { throw new NotImplementedException(); }
-        }
+        public decimal Balance { get; private set; }
+        public int NumberOfTransactions { get; private set; }
         #endregion
 
         #region Constructors
