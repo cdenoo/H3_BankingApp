@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 using H3_BankingApp.Models;
 
@@ -20,6 +21,15 @@ namespace H3_BankingApp
             Console.WriteLine($"Account balance after withdrawal: {account.Balance}");
 
             Console.WriteLine($"Number of transactions: {account.NumberOfTransactions}");
+
+            IEnumerable<Transaction> transactions = account.GetTransactions(null, null);
+
+            foreach(Transaction t in transactions)
+            {
+                Console.WriteLine($"Transaction: {t.DateOfTrans.ToString("dd/MM/yyyy")} -- {t.Amount} -- {t.TransactionType}");
+            }
+
+            Console.ReadKey();
         }
     }
 }
