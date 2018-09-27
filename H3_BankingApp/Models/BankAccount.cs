@@ -1,39 +1,38 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace H3_BankingApp
+namespace H3_BankingApp.Models
 {
     public class BankAccount
     {
-        // Properties
-        private string _accountNumber;
-        private string AccountNumber
-        {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
-        }
-        private decimal Balance
-        {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
-        }
-        private int NumberOfTransactions
-        {
-            set { throw new NotImplementedException(); }
-        }
+        #region Fields
+        private string _accountNumber; 
+        #endregion
 
-        // Methods
+        #region Properties
+        public string AccountNumber
+        {
+            get { return _accountNumber; }
+            set { _accountNumber = value; }
+        }
+        public decimal Balance;
+        public int NumberOfTransactions
+        {
+            get { throw new NotImplementedException(); }
+        }
+        #endregion
+
+        #region Constructors
         public BankAccount(string account)
         {
-            throw new NotImplementedException();
+            AccountNumber = account;
+            Balance = Decimal.Zero;
         }
+        #endregion
 
+        #region Methods
         public void Deposit(decimal amount)
         {
-            throw new NotImplementedException();
+            Balance += amount;
         }
 
         public override bool Equals(Object obj)
@@ -58,7 +57,8 @@ namespace H3_BankingApp
 
         public void Withdraw(decimal amount)
         {
-            throw new NotImplementedException();
-        }
+            Balance -= amount;
+        } 
+        #endregion
     }
 }

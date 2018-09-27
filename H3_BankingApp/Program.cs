@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using H3_BankingApp.Models;
 
 namespace H3_BankingApp
 {
@@ -10,6 +8,8 @@ namespace H3_BankingApp
     {
         public static void Main(string[] args)
         {
+            BankAccount account = new BankAccount("hhaoa121321");
+            Console.WriteLine($"Account number: {account.AccountNumber}");
         }
     }
 }
