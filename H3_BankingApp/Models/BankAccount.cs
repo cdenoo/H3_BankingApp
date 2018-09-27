@@ -71,7 +71,7 @@ namespace H3_BankingApp.Models
             throw new NotImplementedException();
         }
 
-        public void Withdraw(decimal amount)
+        public virtual void Withdraw(decimal amount)
         {
             Balance -= amount;
             _transactions.Add(new Transaction(amount, TransactionType.Withdraw));
